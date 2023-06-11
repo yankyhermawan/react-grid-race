@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 interface GameProps{
     name: {
@@ -87,6 +87,10 @@ export function Game(props: GameProps){
 
     };
     checkWinners()
+    const getTurnName = ()=>{
+        const newName = Object.values(props.name)
+        return newName[turn%4]
+    }
 
 
     return (
@@ -129,7 +133,7 @@ export function Game(props: GameProps){
                 <div className="col-start-[34]  bg-gray-400"></div>
                 <div className="col-start-[35]  bg-black"></div>
             </div>
-            <p className="text-2xl font-bold mt-8">{props.name[`name${turn%4}`]}'s Turn</p>
+            <p className="text-2xl font-bold mt-8">{getTurnName()}'s Turn</p>
             <button className="bg-blue-500 px-4 mt-6 py-2 text-xl font-bold text-white rounded-xl" onClick={movePositions}>Move!</button>
             {winner.length> 0 && <table className="font-bold text-xl text-center">
                 <thead>
